@@ -17,11 +17,11 @@ public class StudentController {
 	StudentService studentService;
 	
 	@RequestMapping(method=RequestMethod.GET,value="create")
-	public ModelAndView createStudent(ModelAndView mandv) {
-		Student dto=new Student();
-		mandv.addObject("student",dto);
-		mandv.setViewName("studentdata");
-		return mandv;
+	public ModelAndView createStudent(ModelAndView modelAndView) {
+		Student studentDTO=new Student();
+		modelAndView.addObject("student",studentDTO);
+		modelAndView.setViewName("studentdata");
+		return modelAndView;
 	}
 
 	 

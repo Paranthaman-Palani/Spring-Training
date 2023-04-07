@@ -9,20 +9,20 @@ import org.springframework.stereotype.Service;
 @Service("student")
 public class StudentService implements SutdentServiceInterface{
 	@Autowired
-	private StudentDAO dao;
+	private StudentDAO studentDAO;
 
 	@Override
 	public void createStudent(Student student) {
 		// TODO Auto-generated method stub
-		dao.save(student);
+		studentDAO.save(student);
 		
 	}
 
 	@Override
 	public Student getRollNo(int id) {
 		// TODO Auto-generated method stub
-		Optional<Student> obj = dao.findById(Integer.valueOf(id));
-		Student student = obj.get();
+		Optional<Student> getStudentRollNo = studentDAO.findById(Integer.valueOf(id));
+		Student student = getStudentRollNo.get();
 		return student;
 		
 	}
@@ -30,14 +30,14 @@ public class StudentService implements SutdentServiceInterface{
 	@Override
 	public List<Student> findAll() {
 		// TODO Auto-generated method stub
-		List<Student> list = dao.findAll();
-		return list;
+		List<Student> studentList = studentDAO.findAll();
+		return studentList;
 	}
 
 	@Override
 	public void deleteStudentById(int id) {
 		// TODO Auto-generated method stub
-		dao.deleteById(id);
+		studentDAO.deleteById(id);
 	}
 	
 

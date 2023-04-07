@@ -6,28 +6,21 @@ import javax.persistence.Id;
 @Entity
 public class Student {
 	@Id
-	private int rollnumber;
-	private String studentname;
+	private int rollNumber;
+	private String studentName;
 	private String department;
 	private String adderss;
-	
-	
-	@Override
-	public String toString() {
-		return "Student [rollnumber=" + rollnumber + ", studentname=" + studentname + ", department=" + department
-				+ ", adderss=" + adderss + "]";
+	public int getRollNumber() {
+		return rollNumber;
 	}
-	public int getRollnumber() {
-		return rollnumber;
+	public void setRollNumber(int rollNumber) {
+		this.rollNumber = rollNumber;
 	}
-	public void setRollnumber(int rollnumber) {
-		this.rollnumber = rollnumber;
+	public String getStudentName() {
+		return studentName;
 	}
-	public String getStudentname() {
-		return studentname;
-	}
-	public void setStudentname(String studentname) {
-		this.studentname = studentname;
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
 	}
 	public String getDepartment() {
 		return department;
@@ -41,6 +34,11 @@ public class Student {
 	public void setAdderss(String adderss) {
 		this.adderss = adderss;
 	}
-	
+	@Override
+	public String toString() {
+		return "Student [rollNumber=" + rollNumber + ", studentName=" + studentName + ", department=" + department
+				+ ", adderss=" + adderss + "]";
+	}
+
 	
 }

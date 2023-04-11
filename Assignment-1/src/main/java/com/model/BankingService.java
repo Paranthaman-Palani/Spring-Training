@@ -13,23 +13,26 @@ public class BankingService {
 	private AccountsDAO dao;
 	
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void doCredit(int acid,int cramt) {
-		AccountsDTO dto=dao.findByID(acid);
-		int amt=dto.getAmount();
-		int newamt=amt+cramt;
-		dto.setAmount(newamt);
+	public void doCredit(int accountId,int creditAmount) {
+		AccountsDTO dto=dao.findByID(accountId);
+		int amount=dto.getAmount();
+		int newAmount=amount+creditAmount;
+		dto.setAmount(newAmount);
 		dao.updateUser(dto);
 	}
-	@Transactional(propagation = Propagation.REQUIRED,rollbackFor = {InsufficientBalance.class}) // do rollback
-	public void doDebit(int acid,int dramt)throws InsufficientBalance {
-		AccountsDTO dto=dao.findByID(acid);
-		int amt = dto.getAmount();
-		if(amt < dramt) {
+	@Transactional(propagation = Propagation.REQUIRED,rollbackFor = {InsufficientBalance.class})
+	public void doDebit(int accountId,int debitAmount)throws InsufficientBalance {
+		AccountsDTO dto=dao.findByID(accountId);
+		int amount = dto.getAmount();
+		if(amount< debitAmount) {
 			throw new InsufficientBalance("Not enough money to transfer....");
 		}
-		int newamt = amt - dramt;
-		dto.setAmount(newamt);
+		
+		int newAmount = amount - debitAmount;
+		dto.setAmount(newAmount);
 		dao.updateUser(dto);
+		
+		
 	}
 	public AccountsDAO getDao() {
 		return dao;

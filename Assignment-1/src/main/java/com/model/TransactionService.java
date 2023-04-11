@@ -1,4 +1,6 @@
 package com.model;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -16,10 +18,10 @@ public class TransactionService {
 	public void setBss(BankingService bss) {
 		this.bss = bss;
 	}
-	@Transactional(propagation = Propagation.REQUIRED)
-	public void moneyTransfer(int crid,int drid,int amt)throws InsufficientBalance {
-		bss.doCredit(crid, amt);
-		bss.doDebit(drid, amt);			
+	@Transactional(propagation = Propagation.REQUIRED,rollbackFor= { InsufficientBalance.class})
+	public void moneyTransfer(int creditId,int debitId,int amount)throws InsufficientBalance {
+		bss.doCredit(creditId, amount);
+		bss.doDebit(debitId, amount);	
 	}
 }
 

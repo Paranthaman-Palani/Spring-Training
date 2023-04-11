@@ -14,13 +14,8 @@ import com.model.TransactionService;
 public class Assignment1Application {
 
 	public static void main(String[] args) throws InsufficientBalance {
-		ConfigurableApplicationContext ctx = SpringApplication.run(Assignment1Application.class, args);
-		
-		
-		TransactionService tss = ctx.getBean("tss",TransactionService.class);
-				
-		tss.moneyTransfer(1, 2, 200);
-		
+		ConfigurableApplicationContext ctx = SpringApplication.run(Assignment1Application.class, args);	
+		TransactionService tss = ctx.getBean("tss",TransactionService.class);			
+		tss.moneyTransfer(2, 1, 200);	
 	}
-
 }
